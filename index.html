@@ -1,9 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Flex Box</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sign Up Page</title>
+		<style>
+			nav {
+				margin-top: 50px;
+				text-align: center;
+			}
+			form {
+				margin: auto;
+				width: 32%;
+				margin-top: 25px;
+				box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+					rgba(0, 0, 0, 0.05) 0px 5px 10px;
+				padding: 30px;
+				border-radius: 14px;
+				font-family: Arial, Helvetica, sans-serif;
+				display: block;
+			}
+			form > h2 {
+				text-align: center;
+				margin-top: -16px;
+			}
+			form > article {
+				margin-top: 18px;
+				display: grid;
+			}
+			article > label {
+				font-size: small;
+				font-weight: 600;
+				color: rgb(56, 56, 56);
+			}
+			article > input {
+				padding: 12px;
+				border-radius: 4px;
+				border: 1px solid #ccc;
+				margin-top: -8px;
+			}
+			article > p {
+				font-size: smaller;
+				text-align: center;
+			}
+			#submit {
+				background-color: rgb(15, 88, 172);
+				color: white;
+				border-radius: 10px;
+				font-size: 18px;
+				font-weight: 600;
+				font-family: Arial, Helvetica, sans-serif;
+				cursor: pointer;
+			}
+			#submit:hover {
+				background-color: rgb(25, 107, 201);
+			}
+
+			#login {
+				margin-top: 50px;
+				margin: auto;
+				width: 32%;
+				box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+					rgba(0, 0, 0, 0.05) 0px 5px 10px;
+				padding: 30px;
+				border-radius: 14px;
+				font-family: Arial, Helvetica, sans-serif;
+				display: none;
+			}
+
+			#login > article > input {
+				margin-top: 6px;
+			}
+			#signin {
+				cursor: pointer;
+
+				cursor: pointer;
+				background-color: rgb(15, 88, 172);
+				color: white;
+				border-radius: 10px;
+				font-size: 18px;
+				font-weight: 600;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			#signin:hover {
+				background-color: rgb(25, 107, 201);
+			}
+			footer {
+				margin: auto;
+				width: 40%;
+				font-size: 20px;
+				color: rgb(88, 88, 88);
+				font-family: Arial, Helvetica, sans-serif;
+				font-weight: 400;
+				text-align: center;
+				margin-top: -10px;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>This is heading</h1>
+		<header>
+			<nav>
+				<img
+					src="https://sso.masaischool.com/brand_dark.svg"
+					alt="masai logo"
+				/>
+			</nav>
+		</header>
+		<main>
+			<form id="signup">
+				<h2>Sign Up</h2>
+				<article>
+					<label for="name">Full name</label><br />
+					<input
+						type="text"
+						placeholder="Enter your name"
+						id="name"
+						required
+						minlength="3"
+					/>
+				</article>
+				<article>
+					<label for="email">Email address</label><br />
+					<input type="email" placeholder="Enter email" required id="email" />
+				</article>
+				<article>
+					<label for="">Mobile number</label><br />
+					<input
+						type="number"
+						placeholder="Mobile number"
+						required
+						minlength="10"
+						maxlength="10"
+						min="0"
+						id="mbl"
+					/>
+				</article>
+				<article>
+					<label for="">Referall code(Optional)</label><br />
+					<input type="text" placeholder="Referal code" id="rflcode" />
+				</article>
+				<article>
+					<p>
+						By signing up I accept the Masai School
+						<a href="">Terms of Services</a> and acknowledge the
+						<a href="">Privacy Policy</a>
+					</p>
+				</article>
+				<article>
+					<input
+						type="submit"
+						value="Continue"
+						id="submit"
+						title="Click here to Continue"
+					/>
+				</article>
+				<article>
+					<span
+						>Already have an account?
+						<a href="https://sso.masaischool.com/signup/">Sign In</a>
+					</span>
+				</article>
+				<article>
+					<span>
+						<input type="checkbox" /> I would like to receive
+						<span style="color: rgb(45, 112, 218)">Email</span> and
+						<span style="color: rgb(45, 112, 218)">Whatsapp</span> updates.
+					</span>
+				</article>
+			</form>
+			<form id="login">
+				<article>
+					<label for="">Username</label>
+					<input
+						type="text"
+						id="username"
+						placeholder="Enter Username"
+						required
+					/>
+				</article>
+				<article>
+					<label>Email Id</label>
+					<input
+						type="email"
+						placeholder="Enter email"
+						id="useremail"
+						required
+					/>
+				</article>
+				<article>
+					<input type="submit" id="signin" value="Signin" />
+				</article>
+			</form>
+		</main>
+		<footer>
+			<p>&copy; By Masai School 2023 Privacy Policy & Terms and Condition</p>
+		</footer>
 	</body>
+	<script>
+		document.querySelector("form").addEventListener("submit", myFun);
+
+		function myFun(event) {
+			event.preventDefault();
+
+			let myName = document.querySelector("#name").value;
+			console.log(myName);
+			localStorage.setItem("name", myName);
+
+			let eml = document.querySelector("#email").value;
+			console.log(eml);
+			localStorage.setItem("email", eml);
+
+			let mbl = document.querySelector("#mbl").value;
+			localStorage.setItem("mbl", mbl);
+
+			let rfl = document.querySelector("#rflcode").value;
+			localStorage.setItem("rfrl", rfl);
+
+			alert("Sign Up succesfull go to login page");
+
+			document.querySelector("#signup").style.display = "none";
+			document.querySelector("#login").style.display = "block";
+			this.reset();
+		}
+
+		document.querySelector("#login").addEventListener("submit", loginFun);
+		function loginFun(event) {
+			event.preventDefault();
+
+			let usrName = document.querySelector("#username").value;
+			let usreml = document.querySelector("#useremail").value;
+
+			let name = localStorage.getItem("name");
+			let email = localStorage.getItem("email");
+
+			if (usrName == name && usreml == email) {
+				alert("Login Successfull");
+			} else {
+				alert("Wrong User Details");
+			}
+			document.querySelector("#signup").style.display = "block";
+			document.querySelector("#login").style.display = "none";
+			this.reset;
+		}
+	</script>
 </html>
